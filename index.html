@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/images/hero-yacht.jpg" />
@@ -12,15 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap" rel="stylesheet">
     <style>
       :root {
-        --deep-900: #020612;
-        --deep-800: #102a43;
-        --deep-700: #1e3a5f;
-        --deep-600: #2a4a73;
-        --cyan-400: #22d3ee;
-        --cyan-500: #06b6d4;
-        --cyan-600: #0891b2;
-        --sky-400: #38bdf8;
-        --blue-500: #3b82f6;
+        /* LIGHT BLUE THEME */
+        --bg-50: #f0f9ff;
+        --bg-100: #e0f2fe;
+        --bg-200: #bae6fd;
+        --bg-300: #7dd3fc;
+        --bg-400: #38bdf8;
+        --bg-500: #0ea5e9;
+        --bg-600: #0284c7;
+        --bg-700: #0369a1;
+        --bg-800: #075985;
+        --bg-900: #0c4a6e;
+        --bg-950: #082f49;
+        
+        --slate-50: #f8fafc;
         --slate-100: #f1f5f9;
         --slate-200: #e2e8f0;
         --slate-300: #cbd5e1;
@@ -30,13 +35,43 @@
         --slate-700: #334155;
         --slate-800: #1e293b;
         --slate-900: #0f172a;
+        --slate-950: #020617;
+        
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --sky-400: #38bdf8;
+        --sky-500: #0ea5e9;
+        --blue-500: #3b82f6;
+        --blue-600: #2563eb;
         --amber-400: #fbbf24;
         --amber-500: #f59e0b;
         --emerald-400: #34d399;
+        --emerald-500: #10b981;
         --rose-400: #f87171;
         --rose-500: #ef4444;
         --white: #ffffff;
         --black: #000000;
+        
+        /* Semantic colors for light theme */
+        --color-bg: var(--slate-50);
+        --color-bg-elevated: var(--white);
+        --color-bg-hover: var(--slate-100);
+        --color-text: var(--slate-900);
+        --color-text-muted: var(--slate-500);
+        --color-text-light: var(--slate-600);
+        --color-border: var(--slate-200);
+        --color-border-strong: var(--slate-300);
+        --color-primary: var(--sky-500);
+        --color-primary-hover: var(--sky-600);
+        --color-primary-light: var(--bg-100);
+        --color-accent: var(--cyan-500);
+        --color-accent-light: var(--bg-100);
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.3);
       }
       *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -44,8 +79,8 @@
         *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       }
       body { 
-        background-color: var(--deep-900); 
-        color: var(--slate-100); 
+        background-color: var(--color-bg); 
+        color: var(--color-text); 
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -67,11 +102,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(180deg, var(--deep-900) 0%, var(--deep-800) 60%, var(--deep-900) 100%);
+        background: linear-gradient(180deg, var(--color-bg) 0%, var(--bg-50) 50%, var(--color-bg) 100%);
         padding: 24px 16px;
         text-align: center;
         width: 100%;
-        transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
+        transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
       }
       #loading-skeleton.hidden {
         opacity: 0;
@@ -81,18 +116,18 @@
       #loading-skeleton::before {
         content: '';
         position: absolute;
-        top: 20%; left: 50%;
+        top: 15%; left: 50%;
         transform: translateX(-50%);
-        width: 80%; height: 60%;
-        max-width: 400px;
-        background: radial-gradient(ellipse at center, var(--cyan-500) 0%, transparent 70%);
-        opacity: 0.06;
+        width: 90%; height: 70%;
+        max-width: 500px;
+        background: radial-gradient(ellipse at center, var(--color-primary) 0%, transparent 70%);
+        opacity: 0.08;
         animation: pulse 4s ease-in-out infinite;
         pointer-events: none;
       }
       @keyframes pulse {
-        0%, 100% { opacity: 0.06; transform: translateX(-50%) scale(1); }
-        50% { opacity: 0.1; transform: translateX(-50%) scale(1.03); }
+        0%, 100% { opacity: 0.08; transform: translateX(-50%) scale(1); }
+        50% { opacity: 0.12; transform: translateX(-50%) scale(1.03); }
       }
       .skeleton-brand {
         display: inline-flex;
@@ -102,18 +137,18 @@
         opacity: 0;
         animation: fadeIn 0.7s ease-out 0.15s forwards;
       }
-      .skeleton-brand svg { width: 32px; height: 32px; color: var(--cyan-400); flex-shrink: 0; }
+      .skeleton-brand svg { width: 36px; height: 36px; color: var(--color-primary); flex-shrink: 0; }
       .skeleton-brand-text { 
         font-family: 'Playfair Display', serif; 
-        font-size: clamp(1.125rem, 3.5vw, 1.5rem); 
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem); 
         font-weight: 700; 
         letter-spacing: -0.02em;
-        color: var(--slate-100);
+        color: var(--color-text);
         white-space: nowrap;
       }
       .skeleton-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.5rem, 5vw, 3rem);
+        font-size: clamp(1.75rem, 5vw, 3.5rem);
         font-weight: 700;
         line-height: 1.15;
         margin-bottom: 14px;
@@ -124,7 +159,7 @@
         margin-right: auto;
       }
       .skeleton-title-accent {
-        background: linear-gradient(90deg, var(--cyan-400), var(--sky-400), var(--blue-500));
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--blue-500));
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -136,11 +171,11 @@
         50% { background-position: 100% 50%; }
       }
       .skeleton-subtitle {
-        font-size: clamp(0.875rem, 2.2vw, 1.125rem);
-        color: var(--slate-400);
+        font-size: clamp(1rem, 2.2vw, 1.25rem);
+        color: var(--color-text-light);
         max-width: 90%;
-        max-width: 560px;
-        margin: 0 auto 28px;
+        max-width: 600px;
+        margin: 0 auto 32px;
         line-height: 1.6;
         opacity: 0;
         animation: fadeIn 0.7s ease-out 0.45s forwards;
@@ -150,15 +185,15 @@
         flex-wrap: wrap;
         gap: 12px;
         justify-content: center;
-        margin-bottom: 36px;
+        margin-bottom: 40px;
         opacity: 0;
         animation: fadeIn 0.7s ease-out 0.6s forwards;
       }
       .skeleton-btn {
-        padding: 12px 24px;
-        border-radius: 10px;
+        padding: 14px 28px;
+        border-radius: 12px;
         font-weight: 600;
-        font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+        font-size: clamp(0.875rem, 2vw, 1rem);
         letter-spacing: 0.01em;
         border: none;
         cursor: default;
@@ -166,47 +201,48 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
       .skeleton-btn-primary {
-        background: linear-gradient(135deg, var(--cyan-400), var(--cyan-500));
-        color: var(--deep-900);
-        box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        color: var(--white);
+        box-shadow: var(--shadow-glow);
       }
       .skeleton-btn-secondary {
-        background: rgba(255,255,255,0.04);
-        color: var(--slate-100);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--color-bg-elevated);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
       }
       .skeleton-stats {
         display: flex;
         flex-wrap: wrap;
         gap: clamp(16px, 4vw, 32px);
         justify-content: center;
-        padding-top: 24px;
-        border-top: 1px solid rgba(255,255,255,0.04);
+        padding-top: 28px;
+        border-top: 1px solid var(--color-border);
         opacity: 0;
         animation: fadeIn 0.7s ease-out 0.75s forwards;
         width: 100%;
-        max-width: 600px;
+        max-width: 640px;
       }
       .skeleton-stat {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 3px;
+        gap: 4px;
         flex: 1;
-        min-width: 80px;
+        min-width: 90px;
       }
       .skeleton-stat-value {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-size: clamp(1.5rem, 3vw, 2rem);
         font-weight: 700;
-        color: var(--cyan-400);
+        color: var(--color-primary);
         line-height: 1.1;
       }
       .skeleton-stat-label {
-        font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+        font-size: clamp(0.6rem, 1.5vw, 0.7rem);
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--slate-600);
+        color: var(--color-text-muted);
         font-weight: 500;
       }
       @keyframes fadeIn {
@@ -214,13 +250,13 @@
         to { opacity: 1; transform: translateY(0); }
       }
       .skeleton-spinner {
-        width: 36px;
-        height: 36px;
-        border: 2.5px solid rgba(34, 211, 238, 0.12);
-        border-top-color: var(--cyan-400);
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--color-border);
+        border-top-color: var(--color-primary);
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        margin-top: 20px;
+        margin-top: 24px;
         opacity: 0;
         animation: fadeIn 0.7s ease-out 0.9s forwards, spin 1s linear infinite;
       }
@@ -236,22 +272,23 @@
       
       /* ===== SCROLLBAR ===== */
       ::-webkit-scrollbar { width: 8px; height: 8px; }
-      ::-webkit-scrollbar-track { background: var(--deep-900); }
-      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--cyan-500), var(--blue-500)); border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--cyan-400), var(--sky-400)); }
+      ::-webkit-scrollbar-track { background: var(--color-bg); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--color-primary), var(--color-accent)); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--color-primary-hover), var(--color-accent)); }
       
       /* ===== SELECTION ===== */
-      ::selection { color: var(--white); background: rgba(34, 211, 238, 0.3); }
+      ::selection { color: var(--white); background: var(--color-primary); }
       
       /* ===== FOCUS ===== */
-      :focus-visible { outline: 2px solid var(--cyan-400); outline-offset: 2px; }
+      :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
       
       /* ===== GLASS MORPHISM ===== */
       .glass { 
-        background: rgba(255,255,255,0.03); 
+        background: rgba(255,255,255,0.8); 
         backdrop-filter: blur(20px); 
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.06);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
       }
       
       /* ===== RESPONSIVE TYPOGRAPHY ===== */
@@ -262,9 +299,9 @@
       .text-responsive-xs { font-size: clamp(0.75rem, 1.8vw, 0.9375rem); }
     </style>
   </head>
-  <body class="bg-deep-900 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+  <body class="antialiased">
     <!-- Skeleton OUTSIDE #root - shows instantly, removed when React loads -->
-    <div id="loading-skeleton" aria-busy="true" aria-label="Loading cinematic showroom">
+    <div id="loading-skeleton" aria-busy="true" aria-label="Loading Aloha Marine showroom">
       <div class="skeleton-brand" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -326,19 +363,27 @@
           skeleton.classList.add('hidden');
           setTimeout(function() {
             if (skeleton.parentNode) skeleton.parentNode.removeChild(skeleton);
-          }, 350);
+          }, 400);
         }
         
-        // Method 1: Check if React has rendered into #root
+        // Method 1: Poll for React render (check every 100ms for up to 10 seconds)
+        var maxChecks = 100; // 10 seconds
+        var checkCount = 0;
         var checkReact = setInterval(function() {
+          checkCount++;
           var root = document.getElementById('root');
           if (root && root.children.length > 0) {
             removeSkeleton();
             clearInterval(checkReact);
+            return;
           }
-        }, 50);
+          if (checkCount >= maxChecks) {
+            removeSkeleton();
+            clearInterval(checkReact);
+          }
+        }, 100);
         
-        // Method 2: On load event (fallback)
+        // Method 2: On load event (backup)
         window.addEventListener('load', function() {
           setTimeout(function() {
             var root = document.getElementById('root');
@@ -346,14 +391,24 @@
               removeSkeleton();
               clearInterval(checkReact);
             }
-          }, 100);
+          }, 200);
         });
         
-        // Method 3: Max timeout fallback
-        setTimeout(function() {
-          removeSkeleton();
-          clearInterval(checkReact);
-        }, 4000);
+        // Method 3: Listen for React hydration via DOM mutation
+        var root = document.getElementById('root');
+        if (root && window.MutationObserver) {
+          var observer = new MutationObserver(function(mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+              if (mutations[i].type === 'childList' && root.children.length > 0) {
+                removeSkeleton();
+                clearInterval(checkReact);
+                observer.disconnect();
+                return;
+              }
+            }
+          });
+          observer.observe(root, { childList: true, subtree: true });
+        }
       })();
     </script>
   </body>

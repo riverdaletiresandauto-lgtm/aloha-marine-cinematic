@@ -22,7 +22,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 
 function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-deep-900">
+    <div className="min-h-screen bg-slate-50">
       {children}
       <CinematicFooter />
     </div>
@@ -40,8 +40,8 @@ function App() {
               <Suspense fallback={
                 <div className="min-h-[60vh] flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-slate-400">Loading cinematic showroom...</p>
+                    <div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-slate-500">Loading Aloha Marine showroom...</p>
                   </div>
                 </div>
               }>
@@ -51,56 +51,56 @@ function App() {
           } />
           <Route path="/inventory" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Inventory />
               </Suspense>
             </Layout>
           } />
           <Route path="/boat/:id" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <BoatDetail />
               </Suspense>
             </Layout>
           } />
           <Route path="/repower" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Repower />
               </Suspense>
             </Layout>
           } />
           <Route path="/service" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Service />
               </Suspense>
             </Layout>
           } />
           <Route path="/financing" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Financing />
               </Suspense>
             </Layout>
           } />
           <Route path="/sell" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Sell />
               </Suspense>
             </Layout>
           } />
           <Route path="/about" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <About />
               </Suspense>
             </Layout>
           } />
           <Route path="/contact" element={
             <Layout>
-              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-cyan-500/50 border-t-cyan-400 rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><div className="w-12 h-12 border-4 border-sky-300 border-t-sky-500 rounded-full animate-spin"></div></div>}>
                 <Contact />
               </Suspense>
             </Layout>

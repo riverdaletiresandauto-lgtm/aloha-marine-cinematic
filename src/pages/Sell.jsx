@@ -8,27 +8,27 @@ export function Sell() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   return (
-    <div className="min-h-screen bg-deep-900">
+    <div className="min-h-screen bg-slate-50">
       {/* Hero */}
-      <section className="relative pt-20 pb-16 px-6 bg-gradient-to-b from-deep-900 via-deep-900 to-deep-950 border-b border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500/5 via-transparent to-transparent" />
+      <section className="relative pt-20 pb-16 px-6 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-500/5 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-widest font-mono mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 text-xs font-bold uppercase tracking-widest font-mono mb-6">
               <DollarSign className="w-4 h-4" /> MAXIMIZE YOUR RETURN
             </span>
-            <h1 className="font-display text-4xl sm:text-6xl font-black text-white tracking-tight mb-6">
-              Sell Your Boat <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500">With Confidence</span>
+            <h1 className="font-display text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mb-6">
+              Sell Your Boat <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-500">With Confidence</span>
             </h1>
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              Two paths to sell: <span className="text-white font-semibold">Consignment</span> (we handle everything, you get top dollar) 
-              or <span className="text-white font-semibold">Direct Purchase</span> (instant offer, same-day funds).
+            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+              Two paths to sell: <span className="text-slate-900 font-semibold">Consignment</span> (we handle everything, you get top dollar) 
+              or <span className="text-slate-900 font-semibold">Direct Purchase</span> (instant offer, same-day funds).
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact" className="px-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold tracking-wide transition shadow-lg shadow-cyan-500/30 flex items-center gap-2">
+              <Link to="/contact" className="px-8 py-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold tracking-wide transition shadow-lg shadow-sky-500/30 flex items-center gap-2">
                 <Search className="w-5 h-5" /> Get Free Valuation
               </Link>
-              <Link to="/inventory" className="px-8 py-4 rounded-xl bg-deep-800/80 hover:bg-deep-700/80 border border-white/10 text-white font-semibold tracking-wide transition backdrop-blur-md flex items-center justify-center gap-2">
+              <Link to="/inventory" className="px-8 py-4 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-900 font-semibold tracking-wide transition flex items-center justify-center gap-2">
                 <Anchor className="w-5 h-5" /> See How We Market
               </Link>
             </div>
@@ -37,18 +37,18 @@ export function Sell() {
       </section>
 
       {/* Mode Selector */}
-      <section className="pt-8 pb-12 px-6 bg-deep-900">
+      <section className="pt-8 pb-12 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 gap-4 p-2 bg-deep-800/40 border border-white/10 rounded-xl">
+          <div className="grid grid-cols-2 gap-4 p-2 bg-slate-100 border border-slate-200 rounded-xl">
             <button
               onClick={() => setMode('consign')}
-              className={`py-3 px-4 rounded-lg font-bold transition ${mode === 'consign' ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/30' : 'text-slate-400 hover:text-white'}`}
+              className={`py-3 px-4 rounded-lg font-bold transition ${mode === 'consign' ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30' : 'text-slate-500 hover:text-slate-700'}`}
             >
               Consignment (Recommended)
             </button>
             <button
               onClick={() => setMode('buyout')}
-              className={`py-3 px-4 rounded-lg font-bold transition ${mode === 'buyout' ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/30' : 'text-slate-400 hover:text-white'}`}
+              className={`py-3 px-4 rounded-lg font-bold transition ${mode === 'buyout' ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30' : 'text-slate-500 hover:text-slate-700'}`}
             >
               Direct Purchase
             </button>
@@ -58,12 +58,12 @@ export function Sell() {
 
       {/* Consignment Details */}
       {mode === 'consign' && (
-        <section className="pt-8 pb-20 px-6 bg-deep-900">
+        <section className="pt-8 pb-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">HOW CONSIGNMENT WORKS</span>
-                <h2 className="font-display text-3xl font-bold text-white mt-2 mb-8">We Do The Work. You Get The Best Price.</h2>
+                <span className="text-sky-600 text-xs font-bold uppercase tracking-widest">HOW CONSIGNMENT WORKS</span>
+                <h2 className="font-display text-3xl font-bold text-slate-900 mt-2 mb-8">We Do The Work. You Get The Best Price.</h2>
                 
                 <div className="space-y-6">
                   {[
@@ -74,12 +74,12 @@ export function Sell() {
                     { step: '05', title: 'Negotiation & Closing', desc: 'We negotiate on your behalf, handle contracts, surveys, haul-outs, and fund disbursement.' },
                   ].map((step, i) => (
                     <div key={i} className="flex gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center flex-shrink-0">
-                        <span className="font-display font-bold text-cyan-400 text-xl">{step.step}</span>
+                      <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center flex-shrink-0">
+                        <span className="font-display font-bold text-sky-600 text-xl">{step.step}</span>
                       </div>
                       <div>
-                        <h4 className="font-display font-bold text-white">{step.title}</h4>
-                        <p className="text-slate-400 text-sm">{step.desc}</p>
+                        <h4 className="font-display font-bold text-slate-900">{step.title}</h4>
+                        <p className="text-slate-500 text-sm">{step.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -87,8 +87,8 @@ export function Sell() {
               </div>
 
               <div className="space-y-6">
-                <div className="p-8 rounded-2xl bg-deep-800/40 border border-white/10 backdrop-blur-sm">
-                  <h3 className="font-display font-bold text-white text-xl mb-6">What You Get</h3>
+                <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                  <h3 className="font-display font-bold text-slate-900 text-xl mb-6">What You Get</h3>
                   <ul className="space-y-3">
                     {[
                       'No upfront costs — we invest in marketing',
@@ -99,19 +99,19 @@ export function Sell() {
                       'Trade-in credit bonus toward new boat purchase',
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                        <span className="text-slate-300">{item}</span>
+                        <CheckCircle2 className="w-5 h-5 text-sky-500" />
+                        <span className="text-slate-600">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30">
-                  <h4 className="font-display font-bold text-amber-400 mb-3 flex items-center gap-2">
+                <div className="p-6 rounded-2xl bg-amber-50 border border-amber-200">
+                  <h4 className="font-display font-bold text-amber-700 mb-3 flex items-center gap-2">
                     <Sparkles className="w-5 h-5" /> Trade-In Bonus
                   </h4>
-                  <p className="text-slate-300">
-                    Apply your consignment proceeds toward any new Sea Born, Sundance, or Spyder and receive an <span className="text-white font-bold">additional 2% dealer credit</span> on top of your sale price.
+                  <p className="text-slate-600">
+                    Apply your consignment proceeds toward any new Sea Born, Sundance, or Spyder and receive an <span className="text-slate-900 font-bold">additional 2% dealer credit</span> on top of your sale price.
                   </p>
                 </div>
               </div>
@@ -122,12 +122,12 @@ export function Sell() {
 
       {/* Direct Purchase Details */}
       {mode === 'buyout' && (
-        <section className="pt-8 pb-20 px-6 bg-deep-900">
+        <section className="pt-8 pb-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">INSTANT OFFER PROGRAM</span>
-                <h2 className="font-display text-3xl font-bold text-white mt-2 mb-8">Cash Offer in 24 Hours. Funds in 48.</h2>
+                <span className="text-sky-600 text-xs font-bold uppercase tracking-widest">INSTANT OFFER PROGRAM</span>
+                <h2 className="font-display text-3xl font-bold text-slate-900 mt-2 mb-8">Cash Offer in 24 Hours. Funds in 48.</h2>
                 
                 <div className="space-y-6">
                   {[
@@ -137,31 +137,31 @@ export function Sell() {
                     { title: 'Same-Day Payment', desc: 'Wire transfer or certified check upon title transfer. No waiting.' },
                   ].map((step, i) => (
                     <div key={i} className="flex gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center flex-shrink-0">
-                        <span className="font-display font-bold text-cyan-400 text-xl">{i + 1}</span>
+                      <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center flex-shrink-0">
+                        <span className="font-display font-bold text-sky-600 text-xl">{i + 1}</span>
                       </div>
                       <div>
-                        <h4 className="font-display font-bold text-white">{step.title}</h4>
-                        <p className="text-slate-400 text-sm">{step.desc}</p>
+                        <h4 className="font-display font-bold text-slate-900">{step.title}</h4>
+                        <p className="text-slate-500 text-sm">{step.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 p-6 rounded-2xl bg-rose-500/10 border border-rose-500/30">
-                  <h4 className="font-display font-bold text-rose-400 mb-3 flex items-center gap-2">
+                <div className="mt-8 p-6 rounded-2xl bg-rose-50 border border-rose-200">
+                  <h4 className="font-display font-bold text-rose-600 mb-3 flex items-center gap-2">
                     <AlertCircle className="w-5 h-5" /> Important
                   </h4>
-                  <p className="text-slate-300">
-                    Direct purchase offers are typically <span className="text-white font-bold">10-15% below retail</span> to account for our reconditioning, marketing, warranty, and holding costs. 
-                    For maximum return, we recommend <span className="text-cyan-400 font-bold">Consignment</span>.
+                  <p className="text-slate-600">
+                    Direct purchase offers are typically <span className="text-slate-900 font-bold">10-15% below retail</span> to account for our reconditioning, marketing, warranty, and holding costs. 
+                    For maximum return, we recommend <span className="text-sky-600 font-bold">Consignment</span>.
                   </p>
                 </div>
               </div>
 
               <div className="space-y-6">
-                <div className="p-8 rounded-2xl bg-deep-800/40 border border-white/10 backdrop-blur-sm">
-                  <h3 className="font-display font-bold text-white text-xl mb-6">Ideal For Direct Purchase</h3>
+                <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                  <h3 className="font-display font-bold text-slate-900 text-xl mb-6">Ideal For Direct Purchase</h3>
                   <ul className="space-y-3">
                     {[
                       'Need to sell quickly (relocation, estate, upgrade)',
@@ -171,8 +171,8 @@ export function Sell() {
                       'Wanting guaranteed sale with no contingencies',
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                        <span className="text-slate-300">{item}</span>
+                        <CheckCircle2 className="w-5 h-5 text-sky-500" />
+                        <span className="text-slate-600">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -184,69 +184,69 @@ export function Sell() {
       )}
 
       {/* Start the Process */}
-      <section className="pt-16 pb-20 px-6 bg-deep-950 border-t border-white/5">
+      <section className="pt-16 pb-20 px-6 bg-slate-50 border-t border-slate-200">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">GET STARTED</span>
-            <h2 className="font-display text-3xl font-bold text-white mt-2">Ready to Know What Your Boat is Worth?</h2>
-            <p className="text-slate-400 mt-3">Free, no-obligation market valuation. We'll reply within 4 business hours.</p>
+            <span className="text-sky-600 text-xs font-bold uppercase tracking-widest">GET STARTED</span>
+            <h2 className="font-display text-3xl font-bold text-slate-900 mt-2">Ready to Know What Your Boat is Worth?</h2>
+            <p className="text-slate-500 mt-3">Free, no-obligation market valuation. We'll reply within 4 business hours.</p>
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Year</label>
-                <input type="number" min="1990" max={new Date().getFullYear() + 1} placeholder="2022" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Year</label>
+                <input type="number" min="1990" max={new Date().getFullYear() + 1} placeholder="2022" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Make / Brand</label>
-                <input type="text" placeholder="Sea Born" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Make / Brand</label>
+                <input type="text" placeholder="Sea Born" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Model</label>
-                <input type="text" placeholder="FX24 Bay ES" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Model</label>
+                <input type="text" placeholder="FX24 Bay ES" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Length</label>
-                <input type="text" placeholder="24'" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Length</label>
+                <input type="text" placeholder="24'" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div className="md:col-span-2">
-                <label className="text-xs text-slate-400 block mb-1">Engine(s) & Hours</label>
-                <input type="text" placeholder="Twin Yamaha F300, 450 hrs each" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Engine(s) & Hours</label>
+                <input type="text" placeholder="Twin Yamaha F300, 450 hrs each" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div className="md:col-span-2">
-                <label className="text-xs text-slate-400 block mb-1">Condition & Notable Features</label>
-                <textarea rows={3} placeholder="Excellent. Garmin GPSMAP 8612, Seakeeper 3, Power-Pole, custom cover..." className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none resize-none"></textarea>
+                <label className="text-xs text-slate-500 block mb-1">Condition & Notable Features</label>
+                <textarea rows={3} placeholder="Excellent. Garmin GPSMAP 8612, Seakeeper 3, Power-Pole, custom cover..." className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30 resize-none"></textarea>
               </div>
               <div className="md:col-span-2">
-                <label className="text-xs text-slate-400 block mb-1">Photos (Drag & drop or click to upload)</label>
-                <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:border-cyan-400/50 transition">
-                  <Upload className="w-8 h-8 text-slate-500 mx-auto mb-2" />
-                  <p className="text-slate-400">Up to 20 photos • JPG, PNG • Max 10MB each</p>
+                <label className="text-xs text-slate-500 block mb-1">Photos (Drag & drop or click to upload)</label>
+                <div className="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center hover:border-sky-400/50 transition">
+                  <Upload className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+                  <p className="text-slate-500">Up to 20 photos • JPG, PNG • Max 10MB each</p>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-200">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Your Name</label>
-                <input type="text" required placeholder="Captain John Smith" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Your Name</label>
+                <input type="text" required placeholder="Captain John Smith" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Email or Phone</label>
-                <input type="text" required placeholder="john@example.com / (239) 555-0199" className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white focus:border-cyan-400/50 focus:outline-none" />
+                <label className="text-xs text-slate-500 block mb-1">Email or Phone</label>
+                <input type="text" required placeholder="john@example.com / (239) 555-0199" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400/30" />
               </div>
             </div>
 
-            <button type="submit" className="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold tracking-wide text-lg transition shadow-lg shadow-cyan-500/30">
+            <button type="submit" className="w-full py-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold tracking-wide text-lg transition shadow-lg shadow-sky-500/30">
               Get My Free Valuation
             </button>
 
             {formSubmitted && (
-              <div className="p-6 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-center animate-fade-up">
-                <Sparkles className="w-10 h-10 text-cyan-400 mx-auto mb-3" />
-                <h4 className="text-white font-bold text-lg mb-1">Valuation Request Sent!</h4>
-                <p className="text-slate-300">Our appraisal team will review and contact you within 4 business hours with a detailed market analysis.</p>
+              <div className="p-6 rounded-xl bg-sky-50 border border-sky-200 text-center animate-fade-up">
+                <Sparkles className="w-10 h-10 text-sky-500 mx-auto mb-3" />
+                <h4 className="text-slate-900 font-bold text-lg mb-1">Valuation Request Sent!</h4>
+                <p className="text-slate-500">Our appraisal team will review and contact you within 4 business hours with a detailed market analysis.</p>
               </div>
             )}
           </form>
