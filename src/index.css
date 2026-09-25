@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-50: #f0f4f8;
+  --color-deep-100: #d9e2ec;
+  --color-deep-200: #bcccdc;
+  --color-deep-300: #9fb3c8;
+  --color-deep-400: #829ab1;
+  --color-deep-500: #627d98;
+  --color-deep-600: #486581;
+  --color-deep-700: #334e68;
+  --color-deep-800: #243b53;
+  --color-deep-900: #102a43;
+  --color-deep-950: #020612;
+  
+  --color-panel: rgba(10, 20, 40, 0.55);
+  --color-border: rgba(34, 211, 238, 0.18);
+  
+  --font-family-display: 'Bebas Neue', 'Oswald', 'Segoe UI', sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-deep-900 text-white antialiased font-sans;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.font-display {
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-family-mono);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.6s ease-out forwards; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.35); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #020612; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #06b6d4, #3b82f6); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #22d3ee, #60a5fa); }
+
+/* Selection */
+::selection { background: rgba(34, 211, 238, 0.3); color: white; }
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Glass morphism */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500;
+}
