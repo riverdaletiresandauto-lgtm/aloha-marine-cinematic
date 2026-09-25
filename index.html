@@ -10,9 +10,243 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --deep-900: #020612;
+        --deep-800: #102a43;
+        --deep-700: #1e3a5f;
+        --cyan-400: #22d3ee;
+        --cyan-500: #06b6d4;
+        --slate-100: #f1f5f9;
+        --slate-400: #94a3b8;
+        --slate-600: #475569;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { 
+        background-color: var(--deep-900); 
+        color: var(--slate-100); 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      /* Loading skeleton matching the hero */
+      .loading-skeleton {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, var(--deep-900) 0%, var(--deep-800) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .loading-skeleton::before {
+        content: '';
+        position: absolute;
+        top: 25%; left: 25%;
+        width: 50%; height: 50%;
+        background: radial-gradient(ellipse, var(--cyan-500) 0%, transparent 70%);
+        opacity: 0.08;
+        animation: pulse 4s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.08; transform: scale(1); }
+        50% { opacity: 0.12; transform: scale(1.05); }
+      }
+      .skeleton-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.2s forwards;
+      }
+      .skeleton-brand svg { width: 36px; height: 36px; color: var(--cyan-400); }
+      .skeleton-brand-text { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 1.5rem; 
+        font-weight: 700; 
+        letter-spacing: -0.02em;
+        color: var(--slate-100);
+      }
+      .skeleton-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 6vw, 4rem);
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.4s forwards;
+      }
+      .skeleton-title-accent {
+        background: linear-gradient(90deg, var(--cyan-400), var(--cyan-500));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .skeleton-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        color: var(--slate-400);
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 32px;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.6s forwards;
+      }
+      .skeleton-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        margin-bottom: 48px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.8s forwards;
+      }
+      .skeleton-btn {
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        border: none;
+        cursor: default;
+      }
+      .skeleton-btn-primary {
+        background: linear-gradient(135deg, var(--cyan-400), var(--cyan-500));
+        color: var(--deep-900);
+      }
+      .skeleton-btn-secondary {
+        background: rgba(255,255,255,0.05);
+        color: var(--slate-100);
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+      .skeleton-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: center;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 1s forwards;
+      }
+      .skeleton-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .skeleton-stat-value {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--cyan-400);
+      }
+      .skeleton-stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--slate-600);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .skeleton-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(34,211,238,0.15);
+        border-top-color: var(--cyan-400);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-top: 24px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 1.2s forwards, spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .loading-skeleton * { animation: none !important; opacity: 1 !important; }
+        .skeleton-spinner { display: none; }
+      }
+    </style>
   </head>
   <body class="bg-deep-900 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant loading skeleton - shows immediately before React hydrates -->
+      <div class="loading-skeleton" id="loading-skeleton">
+        <div class="skeleton-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="skeleton-brand-text">ALOHA MARINE SWFL</span>
+        </div>
+        <h1 class="skeleton-title">
+          Where <span class="skeleton-title-accent">Pure Luxury</span> Meets The Florida Gulf
+        </h1>
+        <p class="skeleton-subtitle">
+          Experience Southwest Florida's premier dealership for Sea Born, Sundance, & Spyder. 
+          Explore live inventory, repower with custom Stealth Suzuki outboards, or inspect detailed 
+          specifications collaboratively with other shoppers.
+        </p>
+        <div class="skeleton-buttons">
+          <button class="skeleton-btn skeleton-btn-primary" disabled>Explore Showroom</button>
+          <button class="skeleton-btn skeleton-btn-secondary" disabled>Suzuki Stealth Motors</button>
+        </div>
+        <div class="skeleton-stats">
+          <div class="skeleton-stat">
+            <span class="skeleton-stat-value">12+</span>
+            <span class="skeleton-stat-label">Vessels in Stock</span>
+          </div>
+          <div class="skeleton-stat">
+            <span class="skeleton-stat-value">4.9★</span>
+            <span class="skeleton-stat-label">Google Rating</span>
+          </div>
+          <div class="skeleton-stat">
+            <span class="skeleton-stat-value">200+</span>
+            <span class="skeleton-stat-label">Reviews</span>
+          </div>
+          <div class="skeleton-stat">
+            <span class="skeleton-stat-value">15+</span>
+            <span class="skeleton-stat-label">Years Experience</span>
+          </div>
+        </div>
+        <div class="skeleton-spinner" aria-label="Loading cinematic showroom"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Hide skeleton once React hydrates
+      document.addEventListener('DOMContentLoaded', () => {
+        const skeleton = document.getElementById('loading-skeleton');
+        if (skeleton) {
+          // Give React a moment to hydrate, then fade out skeleton
+          const observer = new MutationObserver(() => {
+            const root = document.getElementById('root');
+            if (root && root.children.length > 1) {
+              skeleton.style.opacity = '0';
+              skeleton.style.transition = 'opacity 0.4s ease-out';
+              setTimeout(() => skeleton.remove(), 400);
+              observer.disconnect();
+            }
+          });
+          observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+          // Fallback: remove after 3s
+          setTimeout(() => {
+            if (skeleton.parentNode) {
+              skeleton.style.opacity = '0';
+              skeleton.style.transition = 'opacity 0.4s ease-out';
+              setTimeout(() => skeleton.remove(), 400);
+            }
+          }, 3000);
+        }
+      });
+    </script>
   </body>
 </html>
