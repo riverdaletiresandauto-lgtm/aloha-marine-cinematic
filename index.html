@@ -52,26 +52,33 @@
         line-height: 1.5;
         min-height: 100vh;
       }
-      #root { min-height: 100vh; display: flex; flex-direction: column; }
+      #root { min-height: 100vh; }
       .font-display { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em; }
       .font-mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
       
-      /* ===== INSTANT LOADING SKELETON ===== */
-      .loading-skeleton {
+      /* ===== INSTANT LOADING SKELETON (OUTSIDE #root) ===== */
+      #loading-skeleton {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
         min-height: 100vh;
-        min-height: 100dvh; /* Dynamic viewport for mobile */
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background: linear-gradient(180deg, var(--deep-900) 0%, var(--deep-800) 60%, var(--deep-900) 100%);
-        position: relative;
-        overflow: hidden;
         padding: 24px 16px;
         text-align: center;
         width: 100%;
+        transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
       }
-      .loading-skeleton::before {
+      #loading-skeleton.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #loading-skeleton::before {
         content: '';
         position: absolute;
         top: 20%; left: 50%;
@@ -256,101 +263,97 @@
     </style>
   </head>
   <body class="bg-deep-900 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
-    <div id="root">
-      <!-- Instant loading skeleton - shows immediately before React hydrates -->
-      <div class="loading-skeleton" id="loading-skeleton" aria-busy="true" aria-label="Loading cinematic showroom">
-        <div class="skeleton-brand" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="skeleton-brand-text">ALOHA MARINE SWFL</span>
-        </div>
-        <h1 class="skeleton-title">
-          Where <span class="skeleton-title-accent">Pure Luxury</span> Meets The Florida Gulf
-        </h1>
-        <p class="skeleton-subtitle">
-          Experience Southwest Florida's premier dealership for Sea Born, Sundance, & Spyder. 
-          Explore live inventory, repower with custom Stealth Suzuki outboards, or inspect detailed 
-          specifications collaboratively with other shoppers.
-        </p>
-        <div class="skeleton-buttons">
-          <button class="skeleton-btn skeleton-btn-primary" disabled>Explore Showroom</button>
-          <button class="skeleton-btn skeleton-btn-secondary" disabled>Suzuki Stealth Motors</button>
-        </div>
-        <div class="skeleton-stats" role="list" aria-label="Dealership statistics">
-          <div class="skeleton-stat" role="listitem">
-            <span class="skeleton-stat-value">12+</span>
-            <span class="skeleton-stat-label">Vessels in Stock</span>
-          </div>
-          <div class="skeleton-stat" role="listitem">
-            <span class="skeleton-stat-value">4.9★</span>
-            <span class="skeleton-stat-label">Google Rating</span>
-          </div>
-          <div class="skeleton-stat" role="listitem">
-            <span class="skeleton-stat-value">200+</span>
-            <span class="skeleton-stat-label">Reviews</span>
-          </div>
-          <div class="skeleton-stat" role="listitem">
-            <span class="skeleton-stat-value">15+</span>
-            <span class="skeleton-stat-label">Years Experience</span>
-          </div>
-        </div>
-        <div class="skeleton-spinner" aria-hidden="true"></div>
+    <!-- Skeleton OUTSIDE #root - shows instantly, removed when React loads -->
+    <div id="loading-skeleton" aria-busy="true" aria-label="Loading cinematic showroom">
+      <div class="skeleton-brand" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="skeleton-brand-text">ALOHA MARINE SWFL</span>
       </div>
+      <h1 class="skeleton-title">
+        Where <span class="skeleton-title-accent">Pure Luxury</span> Meets The Florida Gulf
+      </h1>
+      <p class="skeleton-subtitle">
+        Experience Southwest Florida's premier dealership for Sea Born, Sundance, & Spyder. 
+        Explore live inventory, repower with custom Stealth Suzuki outboards, or inspect detailed 
+        specifications collaboratively with other shoppers.
+      </p>
+      <div class="skeleton-buttons">
+        <button class="skeleton-btn skeleton-btn-primary" disabled>Explore Showroom</button>
+        <button class="skeleton-btn skeleton-btn-secondary" disabled>Suzuki Stealth Motors</button>
+      </div>
+      <div class="skeleton-stats" role="list" aria-label="Dealership statistics">
+        <div class="skeleton-stat" role="listitem">
+          <span class="skeleton-stat-value">12+</span>
+          <span class="skeleton-stat-label">Vessels in Stock</span>
+        </div>
+        <div class="skeleton-stat" role="listitem">
+          <span class="skeleton-stat-value">4.9★</span>
+          <span class="skeleton-stat-label">Google Rating</span>
+        </div>
+        <div class="skeleton-stat" role="listitem">
+          <span class="skeleton-stat-value">200+</span>
+          <span class="skeleton-stat-label">Reviews</span>
+        </div>
+        <div class="skeleton-stat" role="listitem">
+          <span class="skeleton-stat-value">15+</span>
+          <span class="skeleton-stat-label">Years Experience</span>
+        </div>
+      </div>
+      <div class="skeleton-spinner" aria-hidden="true"></div>
     </div>
+
+    <!-- React mounts here - initially empty -->
+    <div id="root"></div>
+
+    <!-- Module script loads React app -->
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Skeleton removal - runs when React app starts executing -->
     <script>
-      // Robust skeleton removal on hydration
       (function() {
         'use strict';
         var skeleton = document.getElementById('loading-skeleton');
-        var root = document.getElementById('root');
-        if (!skeleton || !root) return;
+        if (!skeleton) return;
         
         var removed = false;
         function removeSkeleton() {
           if (removed) return;
           removed = true;
-          skeleton.style.opacity = '0';
-          skeleton.style.transition = 'opacity 0.35s ease-out';
+          skeleton.classList.add('hidden');
           setTimeout(function() {
             if (skeleton.parentNode) skeleton.parentNode.removeChild(skeleton);
           }, 350);
         }
         
-        // Method 1: MutationObserver for React hydration
-        if (window.MutationObserver) {
-          var observer = new MutationObserver(function(mutations) {
-            for (var i = 0; i < mutations.length; i++) {
-              if (mutations[i].type === 'childList' && root.children.length > 1) {
-                removeSkeleton();
-                return;
-              }
-            }
-          });
-          observer.observe(root, { childList: true, subtree: true });
-        }
-        
-        // Method 2: Check for React root markers
-        var checkHydration = setInterval(function() {
-          if (root.querySelector('[data-reactroot], [data-react-root], #root > *:not(#loading-skeleton)')) {
+        // Method 1: Check if React has rendered into #root
+        var checkReact = setInterval(function() {
+          var root = document.getElementById('root');
+          if (root && root.children.length > 0) {
             removeSkeleton();
-            clearInterval(checkHydration);
+            clearInterval(checkReact);
           }
         }, 50);
         
-        // Method 3: Fallback timeout
+        // Method 2: On load event (fallback)
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            var root = document.getElementById('root');
+            if (root && root.children.length > 0) {
+              removeSkeleton();
+              clearInterval(checkReact);
+            }
+          }, 100);
+        });
+        
+        // Method 3: Max timeout fallback
         setTimeout(function() {
           removeSkeleton();
-          clearInterval(checkHydration);
-        }, 3000);
-        
-        // Method 4: On load event
-        window.addEventListener('load', function() {
-          setTimeout(removeSkeleton, 100);
-        });
+          clearInterval(checkReact);
+        }, 4000);
       })();
     </script>
   </body>
