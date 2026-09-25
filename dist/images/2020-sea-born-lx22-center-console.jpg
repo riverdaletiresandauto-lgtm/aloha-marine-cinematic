@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#0ea5e915"/>
+  <ellipse cx="300" cy="320" rx="200" ry="80" fill="#e0f2fe"/>
+  <path d="M150 280 Q200 240 300 240 Q400 240 450 280" fill="#bae6fd" stroke="#0ea5e9" stroke-width="2"/>
+  <path d="M200 280 Q220 220 300 220 Q380 220 400 280" fill="#7dd3fc" opacity="0.8"/>
+  <rect x="270" y="180" width="60" height="60" rx="4" fill="#fff" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="300" y="360" text-anchor="middle" font-family="system-ui" font-size="24" font-weight="bold" fill="#0f172a">Sea Born LX22 CC</text>
+</svg>
