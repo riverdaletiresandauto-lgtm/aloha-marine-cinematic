@@ -9,3 +9,6 @@ command = "npx serve -s dist -l 3000"
 
 [variables]
 NIXPACKS_NODE_VERSION = "20"
+
+[expose]
+ports = [3000]
