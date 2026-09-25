@@ -15,171 +15,251 @@
         --deep-900: #020612;
         --deep-800: #102a43;
         --deep-700: #1e3a5f;
+        --deep-600: #2a4a73;
         --cyan-400: #22d3ee;
         --cyan-500: #06b6d4;
+        --cyan-600: #0891b2;
+        --sky-400: #38bdf8;
+        --blue-500: #3b82f6;
         --slate-100: #f1f5f9;
+        --slate-200: #e2e8f0;
+        --slate-300: #cbd5e1;
         --slate-400: #94a3b8;
+        --slate-500: #64748b;
         --slate-600: #475569;
+        --slate-700: #334155;
+        --slate-800: #1e293b;
+        --slate-900: #0f172a;
+        --amber-400: #fbbf24;
+        --amber-500: #f59e0b;
+        --emerald-400: #34d399;
+        --rose-400: #f87171;
+        --rose-500: #ef4444;
+        --white: #ffffff;
+        --black: #000000;
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+      *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
       body { 
         background-color: var(--deep-900); 
         color: var(--slate-100); 
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        min-height: 100vh;
       }
-      #root { min-height: 100vh; }
-      /* Loading skeleton matching the hero */
+      #root { min-height: 100vh; display: flex; flex-direction: column; }
+      .font-display { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.02em; }
+      .font-mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+      
+      /* ===== INSTANT LOADING SKELETON ===== */
       .loading-skeleton {
         min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport for mobile */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(180deg, var(--deep-900) 0%, var(--deep-800) 100%);
+        background: linear-gradient(180deg, var(--deep-900) 0%, var(--deep-800) 60%, var(--deep-900) 100%);
         position: relative;
         overflow: hidden;
+        padding: 24px 16px;
+        text-align: center;
+        width: 100%;
       }
       .loading-skeleton::before {
         content: '';
         position: absolute;
-        top: 25%; left: 25%;
-        width: 50%; height: 50%;
-        background: radial-gradient(ellipse, var(--cyan-500) 0%, transparent 70%);
-        opacity: 0.08;
+        top: 20%; left: 50%;
+        transform: translateX(-50%);
+        width: 80%; height: 60%;
+        max-width: 400px;
+        background: radial-gradient(ellipse at center, var(--cyan-500) 0%, transparent 70%);
+        opacity: 0.06;
         animation: pulse 4s ease-in-out infinite;
+        pointer-events: none;
       }
       @keyframes pulse {
-        0%, 100% { opacity: 0.08; transform: scale(1); }
-        50% { opacity: 0.12; transform: scale(1.05); }
+        0%, 100% { opacity: 0.06; transform: translateX(-50%) scale(1); }
+        50% { opacity: 0.1; transform: translateX(-50%) scale(1.03); }
       }
       .skeleton-brand {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 24px;
+        gap: 10px;
+        margin-bottom: 20px;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 0.2s forwards;
+        animation: fadeIn 0.7s ease-out 0.15s forwards;
       }
-      .skeleton-brand svg { width: 36px; height: 36px; color: var(--cyan-400); }
+      .skeleton-brand svg { width: 32px; height: 32px; color: var(--cyan-400); flex-shrink: 0; }
       .skeleton-brand-text { 
         font-family: 'Playfair Display', serif; 
-        font-size: 1.5rem; 
+        font-size: clamp(1.125rem, 3.5vw, 1.5rem); 
         font-weight: 700; 
         letter-spacing: -0.02em;
         color: var(--slate-100);
+        white-space: nowrap;
       }
       .skeleton-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 6vw, 4rem);
+        font-size: clamp(1.5rem, 5vw, 3rem);
         font-weight: 700;
-        text-align: center;
-        line-height: 1.1;
-        margin-bottom: 16px;
+        line-height: 1.15;
+        margin-bottom: 14px;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 0.4s forwards;
+        animation: fadeIn 0.7s ease-out 0.3s forwards;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
       }
       .skeleton-title-accent {
-        background: linear-gradient(90deg, var(--cyan-400), var(--cyan-500));
+        background: linear-gradient(90deg, var(--cyan-400), var(--sky-400), var(--blue-500));
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        background-size: 200% 100%;
+        animation: gradientShift 3s ease-in-out infinite;
+      }
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
       }
       .skeleton-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        font-size: clamp(0.875rem, 2.2vw, 1.125rem);
         color: var(--slate-400);
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto 32px;
+        max-width: 90%;
+        max-width: 560px;
+        margin: 0 auto 28px;
         line-height: 1.6;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 0.6s forwards;
+        animation: fadeIn 0.7s ease-out 0.45s forwards;
       }
       .skeleton-buttons {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 12px;
         justify-content: center;
-        margin-bottom: 48px;
+        margin-bottom: 36px;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 0.8s forwards;
+        animation: fadeIn 0.7s ease-out 0.6s forwards;
       }
       .skeleton-btn {
-        padding: 14px 28px;
-        border-radius: 12px;
+        padding: 12px 24px;
+        border-radius: 10px;
         font-weight: 600;
-        font-size: 0.9rem;
-        letter-spacing: 0.02em;
+        font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+        letter-spacing: 0.01em;
         border: none;
         cursor: default;
+        white-space: nowrap;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
       .skeleton-btn-primary {
         background: linear-gradient(135deg, var(--cyan-400), var(--cyan-500));
         color: var(--deep-900);
+        box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
       }
       .skeleton-btn-secondary {
-        background: rgba(255,255,255,0.05);
+        background: rgba(255,255,255,0.04);
         color: var(--slate-100);
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.08);
       }
       .skeleton-stats {
         display: flex;
         flex-wrap: wrap;
-        gap: 32px;
+        gap: clamp(16px, 4vw, 32px);
         justify-content: center;
         padding-top: 24px;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid rgba(255,255,255,0.04);
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 1s forwards;
+        animation: fadeIn 0.7s ease-out 0.75s forwards;
+        width: 100%;
+        max-width: 600px;
       }
       .skeleton-stat {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
+        flex: 1;
+        min-width: 80px;
       }
       .skeleton-stat-value {
         font-family: 'Playfair Display', serif;
-        font-size: 1.75rem;
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
         font-weight: 700;
         color: var(--cyan-400);
+        line-height: 1.1;
       }
       .skeleton-stat-label {
-        font-size: 0.7rem;
+        font-size: clamp(0.55rem, 1.5vw, 0.65rem);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         color: var(--slate-600);
+        font-weight: 500;
       }
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
+        from { opacity: 0; transform: translateY(16px); }
         to { opacity: 1; transform: translateY(0); }
       }
       .skeleton-spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(34,211,238,0.15);
+        width: 36px;
+        height: 36px;
+        border: 2.5px solid rgba(34, 211, 238, 0.12);
         border-top-color: var(--cyan-400);
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        margin-top: 24px;
+        margin-top: 20px;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out 1.2s forwards, spin 1s linear infinite;
+        animation: fadeIn 0.7s ease-out 0.9s forwards, spin 1s linear infinite;
       }
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
-      @media (prefers-reduced-motion: reduce) {
-        .loading-skeleton * { animation: none !important; opacity: 1 !important; }
-        .skeleton-spinner { display: none; }
+      
+      /* ===== RESPONSIVE UTILITIES ===== */
+      .container { width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+      @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
+      @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+      @media (min-width: 1280px) { .container { padding: 0 3rem; } }
+      
+      /* ===== SCROLLBAR ===== */
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: var(--deep-900); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--cyan-500), var(--blue-500)); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--cyan-400), var(--sky-400)); }
+      
+      /* ===== SELECTION ===== */
+      ::selection { color: var(--white); background: rgba(34, 211, 238, 0.3); }
+      
+      /* ===== FOCUS ===== */
+      :focus-visible { outline: 2px solid var(--cyan-400); outline-offset: 2px; }
+      
+      /* ===== GLASS MORPHISM ===== */
+      .glass { 
+        background: rgba(255,255,255,0.03); 
+        backdrop-filter: blur(20px); 
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.06);
       }
+      
+      /* ===== RESPONSIVE TYPOGRAPHY ===== */
+      .text-responsive-xl { font-size: clamp(1.75rem, 5vw, 3.5rem); }
+      .text-responsive-lg { font-size: clamp(1.25rem, 3.5vw, 2.25rem); }
+      .text-responsive-md { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+      .text-responsive-sm { font-size: clamp(0.875rem, 2vw, 1.125rem); }
+      .text-responsive-xs { font-size: clamp(0.75rem, 1.8vw, 0.9375rem); }
     </style>
   </head>
   <body class="bg-deep-900 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
       <!-- Instant loading skeleton - shows immediately before React hydrates -->
-      <div class="loading-skeleton" id="loading-skeleton">
-        <div class="skeleton-brand">
+      <div class="loading-skeleton" id="loading-skeleton" aria-busy="true" aria-label="Loading cinematic showroom">
+        <div class="skeleton-brand" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -199,54 +279,79 @@
           <button class="skeleton-btn skeleton-btn-primary" disabled>Explore Showroom</button>
           <button class="skeleton-btn skeleton-btn-secondary" disabled>Suzuki Stealth Motors</button>
         </div>
-        <div class="skeleton-stats">
-          <div class="skeleton-stat">
+        <div class="skeleton-stats" role="list" aria-label="Dealership statistics">
+          <div class="skeleton-stat" role="listitem">
             <span class="skeleton-stat-value">12+</span>
             <span class="skeleton-stat-label">Vessels in Stock</span>
           </div>
-          <div class="skeleton-stat">
+          <div class="skeleton-stat" role="listitem">
             <span class="skeleton-stat-value">4.9★</span>
             <span class="skeleton-stat-label">Google Rating</span>
           </div>
-          <div class="skeleton-stat">
+          <div class="skeleton-stat" role="listitem">
             <span class="skeleton-stat-value">200+</span>
             <span class="skeleton-stat-label">Reviews</span>
           </div>
-          <div class="skeleton-stat">
+          <div class="skeleton-stat" role="listitem">
             <span class="skeleton-stat-value">15+</span>
             <span class="skeleton-stat-label">Years Experience</span>
           </div>
         </div>
-        <div class="skeleton-spinner" aria-label="Loading cinematic showroom"></div>
+        <div class="skeleton-spinner" aria-hidden="true"></div>
       </div>
     </div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Hide skeleton once React hydrates
-      document.addEventListener('DOMContentLoaded', () => {
-        const skeleton = document.getElementById('loading-skeleton');
-        if (skeleton) {
-          // Give React a moment to hydrate, then fade out skeleton
-          const observer = new MutationObserver(() => {
-            const root = document.getElementById('root');
-            if (root && root.children.length > 1) {
-              skeleton.style.opacity = '0';
-              skeleton.style.transition = 'opacity 0.4s ease-out';
-              setTimeout(() => skeleton.remove(), 400);
-              observer.disconnect();
+      // Robust skeleton removal on hydration
+      (function() {
+        'use strict';
+        var skeleton = document.getElementById('loading-skeleton');
+        var root = document.getElementById('root');
+        if (!skeleton || !root) return;
+        
+        var removed = false;
+        function removeSkeleton() {
+          if (removed) return;
+          removed = true;
+          skeleton.style.opacity = '0';
+          skeleton.style.transition = 'opacity 0.35s ease-out';
+          setTimeout(function() {
+            if (skeleton.parentNode) skeleton.parentNode.removeChild(skeleton);
+          }, 350);
+        }
+        
+        // Method 1: MutationObserver for React hydration
+        if (window.MutationObserver) {
+          var observer = new MutationObserver(function(mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+              if (mutations[i].type === 'childList' && root.children.length > 1) {
+                removeSkeleton();
+                return;
+              }
             }
           });
-          observer.observe(document.getElementById('root'), { childList: true, subtree: true });
-          // Fallback: remove after 3s
-          setTimeout(() => {
-            if (skeleton.parentNode) {
-              skeleton.style.opacity = '0';
-              skeleton.style.transition = 'opacity 0.4s ease-out';
-              setTimeout(() => skeleton.remove(), 400);
-            }
-          }, 3000);
+          observer.observe(root, { childList: true, subtree: true });
         }
-      });
+        
+        // Method 2: Check for React root markers
+        var checkHydration = setInterval(function() {
+          if (root.querySelector('[data-reactroot], [data-react-root], #root > *:not(#loading-skeleton)')) {
+            removeSkeleton();
+            clearInterval(checkHydration);
+          }
+        }, 50);
+        
+        // Method 3: Fallback timeout
+        setTimeout(function() {
+          removeSkeleton();
+          clearInterval(checkHydration);
+        }, 3000);
+        
+        // Method 4: On load event
+        window.addEventListener('load', function() {
+          setTimeout(removeSkeleton, 100);
+        });
+      })();
     </script>
   </body>
 </html>
